@@ -184,6 +184,25 @@ describe("parseUsageResponse", () => {
     expect(result?.extra_usage).toEqual({ percentRemaining: 62 });
   });
 
+  it.each([
+    { utilization: 0, percentRemaining: 100 },
+    { utilization: 100, percentRemaining: 0 },
+  ])("preserves extra usage boundary utilization $utilization", ({
+    utilization,
+    percentRemaining,
+  }) => {
+    const result = parseUsageResponse(
+      {
+        five_hour: { utilization: 57 },
+        seven_day: { utilization: 12 },
+        extra_usage: { is_enabled: true, utilization },
+      },
+      { includeExtraUsage: true },
+    );
+
+    expect(result?.extra_usage).toEqual({ percentRemaining });
+  });
+
   it("ignores disabled or invalid extra usage without dropping quota windows", () => {
     for (const extraUsage of [
       undefined,

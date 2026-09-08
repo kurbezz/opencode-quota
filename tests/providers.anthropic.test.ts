@@ -175,7 +175,7 @@ describe("anthropic provider", () => {
       },
       {
         name: "Claude Usage Credits",
-        group: "Claude",
+        group: "Claude Usage Credits",
         label: "Monthly:",
         percentRemaining: 62,
       },

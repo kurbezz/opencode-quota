@@ -134,7 +134,7 @@ export const anthropicProvider: QuotaProvider = {
           authority: "provider_reported",
         },
         name: "Claude Usage Credits",
-        group: "Claude",
+        group: "Claude Usage Credits",
         label: "Monthly:",
         percentRemaining: result.extra_usage.percentRemaining,
       });
